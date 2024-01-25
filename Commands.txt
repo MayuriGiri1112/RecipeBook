@@ -1,0 +1,54 @@
+https://www.udemy.com/course/terraform-on-azure/
+
+virtualenv env - to create virtual environment
+env\Scripts\activate - to activate virtual environment
+
+django-admin startproject project_name 	//Starts a project in Django
+code . //Open VSCode
+python manage.py makemigrations
+python manage.py migrate
+
+django-admin startapp my_app 		//Starts an application in Django
+
+https://docs.djangoproject.com/en/5.0/ref/templates/builtins/
+
+CRUD (Create Read Update Delete) Operation:
+
+To create a schema of model:
+class Car(models.Model):
+	car_name = models.CharField(max_length=500)
+	speed = models.IntegerField(default=50)
+
+	def __str__(self) -> str:
+		return self.car_name
+
+To read data:
+Open shell - python manage.py shell
+
+from home.models import *
+car = Car.objects.all()
+car
+<QuerySet [<Car: Nexon>, <Car: XUV 700>, <Car: Renault Kiger>, <Car: Alto>]>
+>>> for car in cars:
+...     print(f"The car name is {car.car_name} with high speed {car.speed}")
+...
+The car name is Nexon with high speed 110
+The car name is XUV 700 with high speed 150
+The car name is Renault Kiger with high speed 80
+The car name is Alto with high speed 50
+
+To update data:
+car = Car.objects.get(id = 1)
+>>> car.car_name = "Kia"
+>>> car.speed = 180
+>>> car.save()
+>>> car
+<Car: Kia>
+>>> Car.objects.all()
+<QuerySet [<Car: Kia>, <Car: XUV 700>, <Car: Renault Kiger>, <Car: Alto>]>
+OR
+ Car.objects.filter(id=1).update(car_name = "Creta Dark Edition")
+
+To delete data:
+Car.objects.get(id=1).delete()
+Car.objects.all().delete()	#To delete all records
